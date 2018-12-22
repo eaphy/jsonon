@@ -97,7 +97,7 @@
       "open source": {\n\
         "博客地址": "https://blog.csdn.net/eaphyy/",\n\
         "视频解析": "http://eaphy.gitee.io/invoke",\n\
-        "个人主页": "http://eaphy.gitee.io/",\n\
+        "个人主页": "http://eaphy.gitee.io/" \n\
       }\n\
   }'
 
