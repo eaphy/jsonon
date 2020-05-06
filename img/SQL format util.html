@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://eaphy.gitee.io/invoke/mysql.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="Shortcut Icon" href="./sql4.ico" type="image/x-icon" />
+
+    <title>SQL format util</title>
+    <script type="text/javascript">
+        function f(obj) {
+            var textVa = obj.value;
+            // 获取带问号的SQL语句
+            var statementStartIndex = textVa.indexOf('Preparing: ');
+            var statementEndIndex = textVa.length - 1;
+            for (var i = statementStartIndex; i < textVa.length; i++) {
+                if (textVa[i] == "\n") {
+                    statementEndIndex = i;
+                    break;
+                }
+            }
+            var statementStr = textVa.substring(statementStartIndex + "Preparing: ".length, statementEndIndex);
+            console.log(statementStr);
+            //获取参数
+            var parametersStartIndex = textVa.indexOf('Parameters: ');
+            var parametersEndIndex = textVa.length;
+            for (var i = parametersStartIndex; i < textVa.length; i++) {
+                if (textVa[i] == "\n") {
+                    parametersEndIndex = i;
+                    break;
+                } else {
+                    // console.log(textVa[i]);
+                }
+            }
+            var parametersStr = textVa.substring(parametersStartIndex + "Parameters: ".length, parametersEndIndex);
+            console.log(parametersStr);
+            // 参数列表
+            var parametersStrArr = parametersStr.split(",");
+            console.log(parametersStrArr);
+            for (var i = 0; i < parametersStrArr.length; i++) {
+                tempStr = parametersStrArr[i].substring(0, parametersStrArr[i].indexOf("("));
+                // 不含"("是null
+                if(tempStr == ''){
+                    tempStr = "null";
+                }
+                // 如果数据中带括号需要判断参数类型
+                typeStr = parametersStrArr[i].substring(parametersStrArr[i].indexOf("(") + 1, parametersStrArr[i].indexOf(")"));
+                if (typeStr == "String" || typeStr == "Timestamp") {
+                    statementStr = statementStr.replace("?", "'" + tempStr.trim() + "'");
+                } else {
+                    statementStr = statementStr.replace("?", tempStr.trim());
+                }
+            }
+            console.log(statementStr);
+            document.getElementById("d1").innerHTML = statementStr;
+            return true;
+        }
+    </script>
+<style type="text/css" abt="234"></style></head>
+<body>
+   
+   <center> <textarea name="getStr" id="1" rows="25" cols="150"></textarea></center><br>
+  <center><button type="submit" onclick="f(document.getElementById(&#39;1&#39;))">转换</button></center><br>
+  <center><textarea name="getStr2" id="d1" rows="25" cols="150" onclick="this.focus();this.select()" readonly="readonly"></textarea></center><br>
+
+
+</body></html>
