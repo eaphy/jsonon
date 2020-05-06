@@ -107,7 +107,7 @@
       view: 'code',
       jsoncon: initJson,
       newjsoncon: '{"name": "Json on"}',
-    //   jsonhtml: JSON.parse(initJson),
+      jsonhtml: '',
       compressStr: '',
       error: {},
       historys: [],
