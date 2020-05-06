@@ -332,6 +332,7 @@
       }
     },
     created () {
+      this.clearAll()
       this.listHistory()
       var clipboard = new Clipboard('.copy-btn')
       let sps = window.location.href.split('?key=')
