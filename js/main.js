@@ -91,7 +91,7 @@
     }
   })
 
-  var initJson =  ''
+  var initJson =  '{}'
 
   // 主题 [key, String, Number, Boolean, Null, link-link, link-hover]
   let themes = [
@@ -105,7 +105,7 @@
     data: {
       baseview: 'formater',
       view: 'code',
-      jsoncon: '',
+      jsoncon: initJson,
       newjsoncon: '{"name": "Json on"}',
       jsonhtml: JSON.parse(initJson),
       compressStr: '',
