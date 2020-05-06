@@ -332,7 +332,6 @@
       }
     },
     created () {
-    //   this.clearAll()
       this.listHistory()
       var clipboard = new Clipboard('.copy-btn')
       let sps = window.location.href.split('?key=')
@@ -342,9 +341,12 @@
         $.get(`${ApiUrl}/json?key=${jsonID}`, function (data) {
           if (data.status) {
             App.jsoncon = data.item.con
-          }else{App.jsoncon = ''}
+          }
         })
       }
-    }
+    },
+    mounted(){
+    this.clearAll()
+}
   })
 })()
