@@ -346,7 +346,9 @@
       }
     },
     mounted(){
-    this.clearAll()
+        this.$nextTick(() => {
+          this.clearAll()
+    })
 }
   })
 })()
